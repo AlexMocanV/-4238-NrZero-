@@ -1,0 +1,49 @@
+int cbst(int st, int dr,int a[])
+{
+    int maxi=99999999;
+    while(st<=dr)
+    {
+        int mij=(st+dr)/2;
+        if(a[mij]%2==0&&a[mij]>0)
+        {
+            dr=mij-1;
+        }
+        else if(a[mij]%2==1)
+        {
+            st=mij+1;
+        }
+        else 
+        {
+            maxi=std::min(maxi,mij);
+            dr=mij-1;
+        }
+    }
+    return maxi;
+}
+
+int cbdr(int st, int dr,int a[])
+{
+    int maxi=-1;
+    while(st<=dr)
+    {
+        int mij=(st+dr)/2;
+        if(a[mij]%2==0&&a[mij]>0)
+        {
+            dr=mij-1;
+        }
+        else if(a[mij]%2==1)
+        {
+            st=mij+1;
+        }
+        else 
+        {
+            maxi=std::max(maxi,mij);
+            st=mij+1;
+        }
+    }
+    return maxi;
+}
+int NrZero(int a[], int n)
+{
+    return cbdr(0,n-1,a)-cbst(0,n-1,a)+1;
+}
