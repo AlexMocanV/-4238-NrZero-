@@ -1,0 +1,13 @@
+#include <numeric> 
+void P(int a[], int n, int &mini, int &maxi, int &sum)
+{
+    mini=99999999;
+    maxi=-1;
+    sum=0;
+    sum=std::accumulate(a,a+n,sum);
+    for(int i=0;i<n;i++)
+    {
+        mini=std::min(mini,a[i]);
+        maxi=std::max(maxi,a[i]);
+    }
+}
